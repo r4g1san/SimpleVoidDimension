@@ -1,0 +1,13 @@
+{
+  "type": "simplevoiddimension:void_type",
+  "generator": {
+    "type": "minecraft:flat",
+    "settings": {
+      "layers": [
+        { "block": "minecraft:air", "height": 1 }
+      ],
+      "structure_overrides": [],
+      "biome": "minecraft:the_void"
+    }
+  }
+}

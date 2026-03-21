@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "EEE",
+    "EGE",
+    "EEE"
+  ],
+  "key": {
+    "E": { "item": "minecraft:ender_pearl" },
+    "G": { "item": "minecraft:glass" }
+  },
+  "result": {
+    "id": "simplevoiddimension:dimension_block",
+    "count": 1
+  }
+}

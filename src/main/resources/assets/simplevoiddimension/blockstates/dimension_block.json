@@ -1,0 +1,5 @@
+{
+  "variants": {
+    "": { "model": "simplevoiddimension:block/dimension_block" }
+  }
+}
