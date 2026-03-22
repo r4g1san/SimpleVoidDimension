@@ -14,7 +14,7 @@ A simple Minecraft mod that adds a minimalist Void Dimension. Perfect for creati
 
 ## Credits
 * **Coding**: Gemini (AI Assistant)
-* **Textures**: Grox (xAI)
+* **Textures**: Grok (xAI)
 * **Language Support**: Translation via AI
 ## License
 This project is licensed under the **MIT License**. See the [LICENSE](LICENSE) file for details.

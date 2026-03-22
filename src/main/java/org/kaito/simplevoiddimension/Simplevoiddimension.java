@@ -5,8 +5,9 @@ import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.material.MapColor;
+import net.minecraft.world.level.block.SoundType;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.attachment.AttachmentType;
@@ -29,8 +30,12 @@ public class Simplevoiddimension {
             "return_pos", () -> AttachmentType.builder(() -> BlockPos.ZERO).serialize(BlockPos.CODEC).build()
     );
 
+    // 修正箇所：素手で3秒（硬さ2.0）、適正ツールの要求を削除
     public static final DeferredBlock<Block> DIMENSION_BLOCK = BLOCKS.register("dimension_block",
-            () -> new DimensionBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE)));
+            () -> new DimensionBlock(BlockBehaviour.Properties.of()
+                    .mapColor(MapColor.COLOR_PURPLE)
+                    .strength(2.0f, 6.0f)
+                    .sound(SoundType.METAL)));
 
     public static final DeferredItem<Item> DIMENSION_BLOCK_ITEM = ITEMS.register("dimension_block",
             () -> new BlockItem(DIMENSION_BLOCK.get(), new Item.Properties()));
@@ -40,12 +45,10 @@ public class Simplevoiddimension {
         ITEMS.register(modEventBus);
         ATTACHMENT_TYPES.register(modEventBus);
 
-        // クリエイティブタブへの登録イベントをリスニング
         modEventBus.addListener(this::addCreative);
     }
 
     private void addCreative(BuildCreativeModeTabContentsEvent event) {
-        // 「機能」タブなどに表示
         if (event.getTabKey() == CreativeModeTabs.FUNCTIONAL_BLOCKS) {
             event.accept(DIMENSION_BLOCK_ITEM);
         }

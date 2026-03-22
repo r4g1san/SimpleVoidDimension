@@ -35,29 +35,21 @@ public class DimensionBlock extends Block {
             BlockPos targetPos;
 
             if (level.dimension() == voidDimKey) {
-                // 帰還処理
                 targetLevel = serverPlayer.server.getLevel(Level.OVERWORLD);
                 if (targetLevel == null) return InteractionResult.PASS;
 
-                // 保存された座標を取得
                 BlockPos savedPos = serverPlayer.getData(Simplevoiddimension.RETURN_POS);
-
-                // 初期値(0,0,0)でなければその座標へ、そうでなければスポーン地点へ
                 if (!savedPos.equals(BlockPos.ZERO)) {
                     targetPos = savedPos;
-                    // 使用後はデータをリセット
                     serverPlayer.setData(Simplevoiddimension.RETURN_POS, BlockPos.ZERO);
                 } else {
                     targetPos = targetLevel.getSharedSpawnPos();
                 }
             } else {
-                // 移動処理
                 targetLevel = serverPlayer.server.getLevel(voidDimKey);
                 if (targetLevel == null) return InteractionResult.PASS;
 
-                // 現在の座標をプレイヤーのデータとして保存（永続化）
                 serverPlayer.setData(Simplevoiddimension.RETURN_POS, serverPlayer.blockPosition());
-
                 targetPos = new BlockPos(0, 64, 0);
                 generatePlatform(targetLevel, targetPos);
             }
